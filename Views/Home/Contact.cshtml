@@ -1,0 +1,34 @@
+@model AlbertslundForsyning.Models.ContactViewModel
+
+@{
+ViewBag.Title = "";
+}
+<h1>@ViewBag.Title</h1>
+<div class="text-center">
+    <h2 class="display-4">Kontakt os, så kontakter vi dig</h2>
+</div>
+@using(Html.BeginForm("SendMail", "Home", FormMethod.Post)){
+<div class="form-group">
+    <label for="Name">Navn</label>
+    @Html.TextBoxFor(model => model.SenderName, new { @class="form-control"})
+</div>
+<div class="form-group">
+    <label for="Email">Email</label>
+    @Html.TextBoxFor(model => model.SenderEmail, new { @class="form-control"})
+</div>
+<div class="form-group">
+    <label for="PhoneNumber">Telefonnummer</label>
+    @Html.TextBoxFor(model => model.SenderPhoneNumber, new { @class="form-control"})
+</div>
+<div class="form-group">
+    <label for="Subject">Emne</label>
+    @Html.TextBoxFor(model => model.SenderSubject, new { @class="form-control"})
+</div>
+<div class="form-group">
+    <label for="Message">Besked</label>
+    @Html.TextBoxFor(model => model.SenderMessage, new { @class="form-control"})
+</div>
+
+<button type="submit" class="btn btn-light">Send besked</button>
+<p style="visibility: false;"><br><br></p>
+}

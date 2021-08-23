@@ -1,0 +1,24 @@
+@model AlbertslundForsyning.Models.BaseViewModel
+@{
+    ViewBag.Title = "";
+}
+<h1>@ViewBag.Title</h1>
+<div class="text-center">
+    <h2 class="display-4">Login</h2>
+</div>
+@using(Html.BeginForm("Login", "User", FormMethod.Post)){
+  <div class="form-group">
+    <label for="Username">Brugernavn</label>    
+    @Html.TextBoxFor(model => model.User.Username, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="Password">Kodeord</label>
+    @Html.TextBoxFor(model => model.User.Password, new { @class="form-control"}) 
+  </div>
+  <button type="submit" class="btn btn-default">Log ind</button>
+}
+
+<br>
+<br>
+<div>@Html.ActionLink("Opret Bruger", "SignUp")
+

@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col mr-3 mt-5 text-center">
+            <h3 class="display-4">Velkommen @Model.User.FirstName @Model.User.LastName</h3>
+            <p class="mt-3">
+                Dette er din personlige profil. Her finder du informationer vedrørende forbrug og tilskud
+                mm.
+            </p>
+        </div>
+    </div>
+   
+
+    <div class="row mt-5">
+        <div class="col-4">
+            <div class="card" style="width: 18rem; height: 300px;">
+                <div class="card-body">
+                    <h5 class="display-5">Profil data</h3>
+                <p class="mt-3">
+                <p>Brugernavn: @Model.User.Username</p>
+                <p>Telefon: @Model.User.PhoneNumber</p>
+                <p>Email: @Model.User.Email</p>
+                <p id="city">Adresse: @Model.User.StreetName @Model.User.StreetNumber, @Model.User.Zipcode</p>
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem; height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Spar på energien</h5>
+                    <p class="card-text">
+                        Få øget komfort i din bygning og hjælp med at nedbringe byens og dit eget varmetab.
+                    </p>
+                    <a href="#" class="btn btn-primary mt-4">Læs mere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card" style="width: 18rem; height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tilskud</h5>
+                    <p class="card-text">
+                        Albertslund Forsynings energitilskud udløb ved udgangen af 2020.
+                    </p>
+                    <a href="#" class="btn btn-primary mt-4">Læs mere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+    <div class="row mt-5">
+
+        @foreach (var dataReading in Model.User.DataReadings)
+        {
+
+            <div class="card m-1 card-width">
+                <div class="card-body">
+                    <h5 class="card-title">Forbrug d. @dataReading.Date.ToString("dd/MM/yyyy")</h5>
+                    <p class="card-text">
+                        Varmeforbrug: @dataReading.HeatUsage MWh
+                    </p>
+                    <p class="card-text">
+                        Vandforbrug: @dataReading.WaterUsage M3
+                    </p>
+                    <p class="card-text">
+                        Temperatur ind/ud: @dataReading.TemperatureIn/@dataReading.TemperatureOut Celcius
+                    </p>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            var zipcode = @Model.User.Zipcode;
+            fetch("https://dawa.aws.dk/postnumre/" + zipcode)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById("city").innerHTML =
+                        "Adresse: @Model.User.StreetName @Model.User.StreetNumber, @Model.User.Zipcode " +
+                        data.navn;
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        });
+    </script>

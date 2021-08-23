@@ -1,0 +1,49 @@
+@model AlbertslundForsyning.Models.BaseViewModel
+
+@{
+    ViewBag.Title = "";
+}
+<h1>@ViewBag.Title</h1>
+<div class="text-center">
+    <h2 class="display-4">Opret bruger</h2>
+</div>
+@using(Html.BeginForm("SignUp", "User", FormMethod.Post)){
+  <div class="form-group">
+    <label for="Username">Brugernavn</label>
+    @Html.TextBoxFor(model => model.User.Username, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="Password">Kodeord</label>
+    @Html.TextBoxFor(model => model.User.Password, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="FirstName">Fornavn</label>
+    @Html.TextBoxFor(model => model.User.FirstName, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="LastName">Efternavn</label>
+    @Html.TextBoxFor(model => model.User.LastName, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="PhoneNumber">Telefonnummer</label>
+    @Html.TextBoxFor(model => model.User.PhoneNumber, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="Email">Email</label>    
+    @Html.TextBoxFor(model => model.User.Email, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="Zipcode">Postnummer</label>    
+    @Html.TextBoxFor(model => model.User.Zipcode, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="StreetName">Vejnavn</label>   
+    @Html.TextBoxFor(model => model.User.StreetName, new { @class="form-control"}) 
+  </div>
+  <div class="form-group">
+    <label for="StreetNumber">Vejnummer</label>    
+    @Html.TextBoxFor(model => model.User.StreetNumber, new { @class="form-control"}) 
+  </div>
+  <button type="submit" class="btn btn-light">Opret</button>
+  <p style="visibility: false;"><br><br></p>
+}
